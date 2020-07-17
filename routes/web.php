@@ -20,18 +20,21 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-    Route::group(['prefix' => 'usuarios'], function () {
-        Route::get('/', 'UsuariosController@index')->name('usuarios.listar');
-        Route::get('/novo', 'UsuariosController@novo')->name('usuarios.novo');
-        Route::post('/cadastrar', 'UsuariosController@cadastrar')->name('usuarios.cadastrar');
-        Route::get('/edicao/{id}', 'UsuariosController@edicao')->name('usuarios.edicao');
-        Route::post('/editar/{id}', 'UsuariosController@editar')->name('usuarios.editar');
-        Route::get('/excluir/{id?}', 'UsuariosController@excluir')->name('usuarios.excluir');
+    Route::group(['prefix' => 'medicos'], function () {
+        Route::get('/', 'MedicosController@index')->name('medicos.listar');
+        Route::get('/novo', 'MedicosController@novo')->name('medicos.novo');
+        Route::post('/cadastrar', 'MedicosController@cadastrar')->name('medicos.cadastrar');
+        Route::get('/edicao/{id}', 'MedicosController@edicao')->name('medicos.edicao');
+        Route::post('/editar/{id}', 'MedicosController@editar')->name('medicos.editar');
+        Route::get('/excluir/{id?}', 'MedicosController@excluir')->name('medicos.excluir');
     });
 
-    Route::group(['prefix' => 'tarefas'], function () {
-        Route::get('/', 'TarefasController@index')->name('tarefas.listar');
-        Route::get('/excluir/{id?}', 'TarefasController@excluir')->name('tarefas.excluir');
+    Route::group(['prefix' => 'pacientes'], function () {
+        Route::get('/', 'PacientesController@index')->name('pacientes.listar');
+        Route::get('/{id?}', 'PacientesController@visualizar')->name('pacientes.visualizar');
+        Route::get('/foto/{id?}', 'PacientesController@foto')->name('pacientes.visualizar');
+        Route::get('/foto/{id?}', 'PacientesController@baixar')->name('pacientes.visualizar');
+        Route::get('/excluir/{id?}', 'PacientesController@excluir')->name('pacientes.excluir');
     });
 
 });

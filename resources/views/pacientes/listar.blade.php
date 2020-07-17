@@ -1,12 +1,11 @@
 @extends('template')
 
-@section('titulo', 'Tarefas')
+@section('titulo', 'Pacientes')
 
 @section('conteudo')
 <div class="user-data m-b-30">
         <h3 class="title-3 m-b-30">
-            <i class="zmdi zmdi-account-calendar"></i>Tarefas Cadastradas</h3>
-        
+            <i class="zmdi zmdi-account-calendar"></i>Pacientes Cadastrados</h3>
 
         <div class="table-responsive table-data">
                 @if(session('sucesso'))
@@ -18,35 +17,32 @@
                 <thead>
                     <tr>
                         <td>ID</td>
-                        <td>Descrição</td>
-                        <td>Dono</td>
-                        <td>Data</td>
-                        <td>Imagem</td>
+                        <td>Nome</td>
+                        <td>Fotos</td>
                         <td>Opções</td>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($tarefas as $tarefa)
+                    @foreach($pacientes as $paciente)
                     <tr>
                         <!-- ID -->
-                        <td><h6>{{$tarefa->id}}</h6></td>
-                        <!-- DESCRIÇÃO -->
-                        <td><h6>{{$tarefa->descricao}}</h6></td>
-                        <!-- DONO -->
-                        <td><h6>{{$tarefa->usuario->nome}}</h6></td>
-                        <!-- DONO -->
+                        <td><h6>{{$paciente->id}}</h6></td>
+                        <!-- NOME -->
                         <td>
-                            @if(!empty($tarefa->imagem)) 
-                                <a href="{{$tarefa->imagem}}" target="_blank"><h6>Abrir</h6></a>
-                            @else
-                                <h6>Sem imagem</h6>
-                            @endif
-                        </td> 
-                        <!-- DATA -->
-                        <td><h6>{{$tarefa->data}}</h6></td>
+                            <div class="table-data__info">
+                                <h6>{{$paciente->nome}}</h6>
+                                <span>
+                                    <a href="#">{{$paciente->email}}</a>
+                                </span>
+                            </div>
+                        </td>
+                        <td>{{count($paciente->fotos)}}</td>
                         <!-- OPÇÕES -->   
                         <td>
-                            <span class="more remover-modal" data-toggle="modal" data-target="#smallmodal" data-id="{{$tarefa->id}}"><i class="zmdi zmdi-delete"></i></span>               
+                            <a href="{{route('pacientes.visualizar', ['id' => $paciente->id])}}">
+                                <span class="more"><i class="zmdi zmdi-edit"></i></span>
+                            </a>
+                            <span class="more remover-modal" data-toggle="modal" data-target="#smallmodal" data-id="{{$paciente->id}}"><i class="zmdi zmdi-delete"></i></span>
                         </td>
                     </tr>
                     @endforeach
@@ -54,26 +50,27 @@
             </table>
             
         <!-- Paginação -->
-        <div style="padding:10px">{{$tarefas->links()}}</div>
+        <div style="padding:10px">{{$pacientes->links()}}</div>
         
         </div>
       
     </div>
 
-@push('javascript')
+
+    @push('javascript')
   <!-- modal small -->
   <div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="smallmodalLabel">Remover Tarefa</h5>
+                    <h5 class="modal-title" id="smallmodalLabel">Remover Usuário</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <p>
-                       Deseja Realmente excluir essa tarefa?
+                       Deseja Realmente excluir esse usuário?
                     </p>
                 </div>
                 <div class="modal-footer">
@@ -86,12 +83,12 @@
     <!-- end modal small -->
 
     <script>
-        let tarefaID;
+        let pacienteID;
         $('.remover-modal').click(function() {
-            tarefaID = $(this).data('id');
+            pacienteID = $(this).data('id');
         })
 
-        $('.btn-deletar').click(() => window.location.href="{{route('tarefas.excluir')}}/"+tarefaID);
+        $('.btn-deletar').click(() => window.location.href="{{route('pacientes.excluir')}}/"+pacienteID);
     </script>
 @endpush
 @endsection

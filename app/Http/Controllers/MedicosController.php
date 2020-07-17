@@ -8,22 +8,22 @@ use App\Models\Usuario;
 /**
  * Controller responsável pela manipulação dos dados do usuários 
  */
-class UsuariosController extends Controller {
+class MedicosController extends Controller {
     
     private $dados = ['menu' => 'usuarios'];
 
     /** Lista o usuários */
     public function index() {
-        $this->dados['usuarios'] = Usuario::paginate(10);
-        return view('usuarios.listar', $this->dados);
+        $this->dados['medicos'] = Usuario::paginate(10);
+        return view('medicos.listar', $this->dados);
     }
 
     /** 
      * Abre a tela cadastrar novo usuário
      */
     public function novo() {
-        $this->dados['usuario'] = new Usuario;
-        return view('usuarios.novo', $this->dados);
+        $this->dados['medico'] = new Usuario;
+        return view('medicos.novo', $this->dados);
     }
 
     /** 
@@ -37,9 +37,10 @@ class UsuariosController extends Controller {
         ]);
         $dados = $request->all();
         $dados['senha'] = md5($dados['senha']);
+        $dados['medico'] = true;
         Usuario::create($dados);
 
-        return redirect()->route('usuarios.listar')->with(['sucesso' => 'Usuário cadastrado com sucesso']);
+        return redirect()->route('medicos.listar')->with(['sucesso' => 'Usuário cadastrado com sucesso']);
     }
 
     /** 
@@ -47,8 +48,8 @@ class UsuariosController extends Controller {
      * @param $id id do usuário
      */
     public function edicao(int $id) {
-        $this->dados['usuario'] = Usuario::findOrFail($id);
-        return view('usuarios.edicao', $this->dados);
+        $this->dados['medico'] = Usuario::findOrFail($id);
+        return view('medicos.edicao', $this->dados);
     }
     
     /** Tenta editar um usuário e salvar no banco
@@ -61,12 +62,13 @@ class UsuariosController extends Controller {
         ]);
 
         $dados = $request->except(['_token']);
+        $dados['medico'] = true;
         if (!empty($dados['senha']))
             $dados['senha'] = md5($dados['senha']);
         else unset($dados['senha']);
         Usuario::where('id', $id)->update($dados);
 
-        return redirect()->route('usuarios.listar')->with(['sucesso' => 'Usuário editado com sucesso']);
+        return redirect()->route('medicos.listar')->with(['sucesso' => 'Usuário editado com sucesso']);
     }
     
     /** Remove um usuário
@@ -74,6 +76,6 @@ class UsuariosController extends Controller {
      */
     public function excluir(int $id) {
         Usuario::destroy($id);
-        return redirect()->route('usuarios.listar')->with('sucesso', 'Usuário excluido');
+        return redirect()->route('medicos.listar')->with('sucesso', 'Usuário excluido');
     }
 }

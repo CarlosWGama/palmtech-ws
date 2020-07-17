@@ -12,10 +12,10 @@ class UsuarioSeed extends Seeder
      */
     public function run() {
         Usuario::create([
-            'nome'  => 'Admin',
-            'email' => 'admin@teste.com',
+            'nome'  => 'Médico',
+            'email' => 'medico@teste.com',
             'senha' => md5('123456'),
-            'admin' => true
+            'medico' => true
         ]);
     }
 }

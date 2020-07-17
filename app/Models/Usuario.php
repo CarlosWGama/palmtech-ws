@@ -13,7 +13,13 @@ class Usuario extends Model {
     protected $guarded = [];
 
     //Não exibe esses campos
-    protected $hidden = ['senha', 'created_at', 'updated_at', 'deleted_at'];
+    protected $hidden = ['senha', 'medico', 'created_at', 'updated_at', 'deleted_at'];
+
+
+    /** Retorna todas fotos dos pacientes */
+    public function fotos() {
+        return $this->hasMany('App\Models\Foto', 'paciente_id');
+    }
 
 
 }

@@ -15,7 +15,7 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next) {
 
-        if ($request->session()->has('usuario') && session('usuario')->admin)
+        if ($request->session()->has('usuario'))
             return $next($request);
         else 
             return redirect()->route('login')->with('erro', 'Sessão expirada');

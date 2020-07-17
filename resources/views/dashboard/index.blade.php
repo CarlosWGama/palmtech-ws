@@ -20,8 +20,8 @@
                         <i class="zmdi zmdi-account-o"></i>
                     </div>
                     <div class="text">
-                        <h2>{{$usuariosCadastrados}}</h2>
-                        <span>Usuários Cadastrados</span>
+                        <h2>{{$totalPacientes}}</h2>
+                        <span>Pacientes Cadastrados</span>
                     </div>
                 </div>
                 <div class="overview-chart">
@@ -40,8 +40,8 @@
                         <i class="zmdi zmdi-calendar-note"></i>
                     </div>
                     <div class="text">
-                        <h2>{{$tarefasCadastradas}}</h2>
-                        <span>Total de Tarefas</span>
+                        <h2>{{$totalFotos}}</h2>
+                        <span>Fotos Tiradas</span>
                     </div>
                 </div>
                 <div class="overview-chart">

@@ -18,7 +18,8 @@ class CriaTabelaUsuarios extends Migration
             $table->string('nome');
             $table->string('email');
             $table->string('senha');
-            $table->boolean('admin')->default(false);
+            $table->date('data_nascimento')->nullable();
+            $table->boolean('medico')->default(false)->comment('Verifica se o usuário é medicou paciente');
             $table->softDeletes();
             $table->timestamps();
         });

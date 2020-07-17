@@ -62,23 +62,23 @@
                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                             </a>
                         </li>
-                        <!-- USUARIOS -->
+                        <!-- MÉDICOS -->
                         <li>
-                            <a href="{{route('usuarios.listar')}}">
-                                <i class="fas fa-user"></i>Usuários</a>
+                            <a href="{{route('medicos.listar')}}">
+                                <i class="fas fa-user"></i>Médico</a>
                                 <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="{{route('usuarios.novo')}}">Novo</a>
+                                    <a href="{{route('medicos.novo')}}">Novo</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('usuarios.listar')}}">Listar</a>
+                                    <a href="{{route('medicos.listar')}}">Listar</a>
                                 </li>
                             </ul>
                         </li>
-                        <!-- TAREFAS -->
+                        <!-- PACIENTES -->
                         <li>
-                            <a href="{{route('tarefas.listar')}}">
-                                <i class="fas fa-check"></i>Tarefas</a>
+                            <a href="{{route('pacientes.listar')}}">
+                                <i class="fas fa-check"></i>Pacientes</a>
                         </li>
                     </ul>
                 </div>
@@ -96,26 +96,28 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
+                        {{-- DASHBOARD --}}
                         <li class="@if(isset($menu) && $menu == 'dashboard') active @endif">
                             <a href="{{route('dashboard')}}">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                             </a>
                         </li>
-                        <li class="has-sub @if(isset($menu) && $menu == 'usuarios') active @endif">
-                            <a class="js-arrow" href="#">
-                                <i class="fas fa-user"></i>Usuários</a>
+                        {{-- MÉDICOS --}}
+                        <li class="has-sub @if(isset($menu) && $menu == 'medicos') active @endif">
+                            <a class="js-arrow" href="#"><i class="fas fa-user"></i>Médicos</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="{{route('usuarios.novo')}}">Novo</a>
+                                    <a href="{{route('medicos.novo')}}">Novo</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('usuarios.listar')}}">Listar</a>
+                                    <a href="{{route('medicos.listar')}}">Listar</a>
                                 </li>
                             </ul>
                         </li>
-                        <li class="@if(isset($menu) && $menu == 'tarefas') active @endif">
-                            <a href="{{route('tarefas.listar')}}">
-                                <i class="fas fa-check"></i>Tarefas</a>
+                        {{-- PACIENTES --}}
+                        <li class="@if(isset($menu) && $menu == 'pacientes') active @endif">
+                            <a href="{{route('pacientes.listar')}}">
+                                <i class="fas fa-check"></i>Pacientes</a>
                         </li>
                     </ul>
                 </nav>
@@ -150,7 +152,7 @@
                                             </div>
                                             <div class="account-dropdown__body">
                                                 <div class="account-dropdown__item">
-                                                    <a href="{{route('usuarios.edicao', ['id' => session('usuario')->id])}}">
+                                                    <a href="{{route('medicos.edicao', ['id' => session('usuario')->id])}}">
                                                         <i class="zmdi zmdi-account"></i>Editar Conta</a>
                                                 </div>
                                             </div>

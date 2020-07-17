@@ -34,13 +34,13 @@
 
 <body class="animsition">
     <div class="page-wrapper">
-        <div class="page-content--bge5">
+        <div class="page-content--bge5" style="background-color:black">
             <div class="container">
                 <div class="login-wrap">
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="#">
-                                <img src="{{asset('images/icon/cwg.png')}}" alt="CoolAdmin">
+                                PALMTECH
                             </a>
                         </div>
                         <div class="login-form">
@@ -65,6 +65,9 @@
                             </form>
                         </div>
                     </div>
+                    <div style="display:flex;align-items:center; justify-content:center">
+                        <img src="{{url('images/centro-inovacao.png')}}" width="200"/>
+                    <div/>
                 </div>
             </div>
         </div>

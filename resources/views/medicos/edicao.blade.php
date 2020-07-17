@@ -1,26 +1,26 @@
 @extends('template')
 
-@section('titulo', 'Novo Usuário')
+@section('titulo', 'Edição de Médico')
 
 @section('conteudo')
 
 
 <div class="card">
     <div class="card-header">
-        <strong>Cadastro de Usuário</strong>
+        <strong>Edição</strong>
     </div>
 
-    <form action="{{route('usuarios.cadastrar')}}" method="post">
+    <form action="{{route('medicos.editar', ['id' => $medico->id])}}" method="post">
         
         <div class="card-body card-block">
             <!-- FORMULARIO -->
-            @include('usuarios._shared.form')
+            @include('medicos._shared.form')
             <!-- FORMULARIO -->
         </div>
         
         <div class="card-footer">
             <button type="submit" class="btn btn-primary btn-sm">
-                <i class="fa fa-save"></i> Cadastrar
+                <i class="fa fa-save"></i> Editar
             </button>
         </div>
     </form>

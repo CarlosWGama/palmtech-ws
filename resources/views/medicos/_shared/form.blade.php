@@ -17,7 +17,7 @@
         <div class="input-group-addon">
             <i class="fa fa-user"></i>
         </div>
-        <input type="text" id="username" name="nome" value="{{old('nome', $usuario->nome)}}" placeholder="Nome" class="form-control">
+        <input type="text" id="username" name="nome" value="{{old('nome', $medico->nome)}}" placeholder="Nome" class="form-control">
     </div>
 </div>
 
@@ -27,7 +27,7 @@
         <div class="input-group-addon">
             <i class="fa fa-envelope"></i>
         </div>
-        <input type="email" id="email" name="email" value="{{old('email', $usuario->email)}}" placeholder="Email" class="form-control">
+        <input type="email" id="email" name="email" value="{{old('email', $medico->email)}}" placeholder="Email" class="form-control">
     </div>
 </div>
 
@@ -41,11 +41,3 @@
     </div>
 </div>
 
-<!-- ADMINISTRADOR -->
-<div class="form-group">
-    <label for="nf-email" class=" form-control-label">Administrador</label>
-    <select name="admin" id="select" class="form-control">
-        <option value="0">Não</option>
-        <option value="1" @if(old('nome', $usuario->nome)) selected @endif>Sim</option>
-    </select>
-</div>
