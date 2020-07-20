@@ -37,34 +37,9 @@
         <div class="page-content--bge5" style="background-color:black">
             <div class="container">
                 <div class="login-wrap">
-                    <div class="login-content">
-                        <div class="login-logo">
-                            <a href="#">
-                                PALMTECH
-                            </a>
-                        </div>
-                        <div class="login-form">
-                            <form action="{{route('logar')}}" method="post">
-                                @csrf
-                                @if (session('erro'))
-                                <div class="alert alert-danger" role="alert">
-                                    {{session('erro')}}
-                                </div>
-                                @endif
 
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <label>Senha</label>
-                                    <input class="au-input au-input--full" type="password" name="senha" placeholder="Senha">
-                                </div>
-                               
-                                <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">Logar</button>
-                            </form>
-                        </div>
-                    </div>
+                    @yield('conteudo')
+
                     <div style="display:flex;align-items:center; justify-content:center">
                         <img src="{{url('images/centro-inovacao.png')}}" width="200"/>
                     <div/>

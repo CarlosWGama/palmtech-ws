@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Mail\RecuperarSenha;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Usuario;
 use Firebase\JWT\JWT;
@@ -21,26 +22,48 @@ class UsuariosController extends ApiController {
                             ->firstOrFail(); //Senão achar retorna 404
 
         $jwt = JWT::encode(['id' => $usuario->id], config('jwt.senha'));
-        return response()->json(['jwt' => $jwt], 200);
+        return response()->json(['jwt' => $jwt, 'usuario' => $usuario], 200);
+    }
+
+    /** Permite usuário atualizar os próprios dados */
+    public function atualizar(Request $request) {
+        $id = $this->getUsuarioID($request);
+        $usuario = Usuario::findOrFail($id);
+
+        $validation = Validator::make($request->usuario, [
+            'nome'              => 'required',
+            'email'             => 'required|email|unique:usuarios,email,'.$id,
+            'senha'             => 'min:6'
+        ]);
+
+        if ($validation->fails()) return response()->json($validation->errors(), 400);
+        
+        $dados = $request->usuario;
+        unset($dados['id']);
+        unset($dados['medico']);
+        if (isset($dados['senha'])) unset($dados['senha']);
+
+        $usuario->fill($dados);
+        
+        if ($request->usuario['senha'])
+            $usuario->senha = md5($request->usuario['senha']);
+
+        $usuario->save();
+        return response()->json($usuario, 200);
     }
 
 
-    /** Cadastra um novo usuário */
-    public function registrar(Request $request) {
+    /** Recupera a senha do usuário */
+    public function recuperarSenha(Request $request) {
+        $usuario = Usuario::where('email', $request->email)->firstOrFail();
 
-        $validation = Validator::make($request->usuario, [
-            'nome'  => 'required',
-            'email' => 'required|email|unique:usuarios,email',
-            'senha' => 'required|min:6'
-        ]);
+        $token = JWT::encode([
+            'id'    => $usuario->id,
+            'exp'   => time() + (60*60*2) //Link expira em 2h
+        ], config('jwt.senha'));
 
-        if ($validation->fails()) {
-            return response()->json($validation->errors(), 400);
-        } else {
-            $usuario = $request->usuario;
-            $usuario['senha'] = md5($usuario['senha']);
-            $usuario = Usuario::create($usuario);
-            return response()->json($usuario, 201);
-        }
+        Mail::to($usuario->email)->send(new RecuperarSenha($usuario, $token));
+
+        return response()->json(['sucesso' => true], 200);
     }
 }

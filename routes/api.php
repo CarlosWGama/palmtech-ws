@@ -12,16 +12,25 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::post('/usuarios', 'Api\UsuariosController@registrar');
+//Não autenticado
 Route::post('/login', 'Api\UsuariosController@logar');
+Route::put('/senha', 'Api\UsuariosController@recuperarSenha');
 
+
+Route::group(['prefix' => 'pacientes'], function () {
+    Route::post('/', 'Api\PacientesController@cadastrar');
+});
+
+//Autenticado
 Route::group(['middleware' => ['jwt']], function () {   
-    Route::group(['prefix' => 'tarefas'], function () {
-        Route::post('/', 'Api\TarefasController@cadastrar');
-        Route::get('/', 'Api\TarefasController@listar');
-        Route::get('/{id}', 'Api\TarefasController@buscar');
-        Route::put('/{id}', 'Api\TarefasController@atualizar');
-        Route::delete('/{id}', 'Api\TarefasController@remover');
+
+    Route::group(['prefix' => 'usuarios'], function () {
+        Route::put('/', 'Api\UsuariosController@atualizar');
+    });
+    
+    Route::group(['prefix' => 'pacientes'], function () {
+        Route::get('/', 'Api\PacientesController@listar');
+        Route::put('/{id}', 'Api\PacientesController@atualizar');
+        Route::delete('/{id}', 'Api\PacientesController@remover');
     }); 
 });

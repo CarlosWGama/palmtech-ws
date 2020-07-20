@@ -1,0 +1,84 @@
+# @baseUrl = http://localhost:8000/api
+@baseUrl = http://192.168.0.14/api
+@token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MX0.DRGDjUIBTMHdBnCyjBY728ryG82zR9aTWnBw-nHU6c8
+
+### Login Médico
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "medico@teste.com", 
+    "senha": "123456"
+}
+
+### Login paciente
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "paciente@teste.com", 
+    "senha": "123456"
+}
+
+### Recuperar senha
+PUT {{baseUrl}}/senha
+Content-Type: application/json
+
+{ "email": "paciente@teste.com" }
+
+### Atualizar 
+PUT {{baseUrl}}/usuarios
+Content-Type: application/json
+Authorization: {{token}}
+
+{ 
+    "usuario": {
+        "data_nascimento": "2004-07-20",
+        "email": "medico@teste.com",  
+        "medico": false,
+        "nome": "Medico 2",
+        "senha": "123456"
+    }
+}
+
+############# =========== PACIENTES =================== ##############
+### Cadastro
+POST {{baseUrl}}/pacientes
+Content-Type: application/json
+
+{ 
+    "usuario": {
+        "data_nascimento": "2004-07-20",
+        "email": "paciente@teste.com",  
+        "id": 0,
+        "medico": false,
+        "nome": "Pacientes",
+        "senha": "123446"
+    }
+}
+
+### Buscar Pacientes
+GET {{baseUrl}}/pacientes
+Content-Type: application/json
+Authorization: {{token}}
+
+### Atualizar 
+PUT {{baseUrl}}/pacientes/3
+Content-Type: application/json
+Authorization: {{token}}
+
+{ 
+    "paciente": {
+        "data_nascimento": "2004-07-20",
+        "email": "paciente@teste.com",  
+        "id": 0,
+        "medico": false,
+        "nome": "Pacientes",
+        "senha": "123446"
+    }
+}
+
+### Deletar Pacientes
+DELETE {{baseUrl}}/pacientes/1
+Content-Type: application/json
+Authorization: {{token}}
