@@ -10,6 +10,10 @@ use App\Models\Usuario;
  * Classe responsável por Controlar as requisições da API envolvendo usuário
  */
 class PacientesController extends ApiController {
+
+    public function __construct() {
+        $this->middleware('medico')->except(['cadastrar']);
+    }
     
     /** Cadastra uma nova tarefa */
     public function cadastrar(Request $request) {

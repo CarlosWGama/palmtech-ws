@@ -12,6 +12,9 @@ class Foto extends Model {
     //Não protege nenhum campo
     protected $guarded = [];
 
+    //Informar os campos adicionaids
+    protected $appends = ['data'];
+
     //Esconde os campos
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
@@ -75,5 +78,64 @@ class Foto extends Model {
         if (!empty($value))
             return url('storage/fotos/'.$value);
         return $value;
+    }
+
+    /**
+     * Altera para a imagem ser exibida com a URL inteira.
+     */
+    public function getEsquerdoP1GridAttribute($value) {
+        if (!empty($value))
+            return url('storage/fotos/'.$value);
+        return $value;
+    }
+
+    /**
+     * Altera para a imagem ser exibida com a URL inteira.
+     */
+    public function getEsquerdoP2GridAttribute($value) {
+        if (!empty($value))
+            return url('storage/fotos/'.$value);
+        return $value;
+    }
+
+    /**
+     * Altera para a imagem ser exibida com a URL inteira.
+     */
+    public function getEsquerdoP3GridAttribute($value) {
+        if (!empty($value))
+            return url('storage/fotos/'.$value);
+        return $value;
+    }
+
+    /**
+     * Altera para a imagem ser exibida com a URL inteira.
+     */
+    public function getDireitoP1GridAttribute($value) {
+        if (!empty($value))
+            return url('storage/fotos/'.$value);
+        return $value;
+    }
+
+    /**
+     * Altera para a imagem ser exibida com a URL inteira.
+     */
+    public function getDireitoP2GridAttribute($value) {
+        if (!empty($value))
+            return url('storage/fotos/'.$value);
+        return $value;
+    }
+
+    /**
+     * Altera para a imagem ser exibida com a URL inteira.
+     */
+    public function getDireitoP3GridAttribute($value) {
+        if (!empty($value))
+            return url('storage/fotos/'.$value);
+        return $value;
+    }
+
+    /** Retorna a data de criação */
+    public function getDataAttribute() {
+        return substr($this->created_at, 0, 10);
     }
 }
