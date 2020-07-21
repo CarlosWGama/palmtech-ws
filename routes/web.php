@@ -33,9 +33,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::group(['prefix' => 'pacientes'], function () {
         Route::get('/', 'PacientesController@index')->name('pacientes.listar');
-        Route::get('/{id?}', 'PacientesController@visualizar')->name('pacientes.visualizar');
-        Route::get('/foto/{id?}', 'PacientesController@foto')->name('pacientes.visualizar');
-        Route::get('/foto/{id?}', 'PacientesController@baixar')->name('pacientes.visualizar');
+        Route::get('/{id}', 'PacientesController@visualizar')->name('pacientes.visualizar');
+        Route::get('/baixar/{id}', 'PacientesController@baixar')->name('fotos.baixar');
         Route::get('/excluir/{id?}', 'PacientesController@excluir')->name('pacientes.excluir');
     });
 

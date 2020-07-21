@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Foto;
 use App\Models\Usuario;
+use Illuminate\Http\Request;
 
 class PacientesController extends Controller {
     
@@ -35,15 +36,54 @@ class PacientesController extends Controller {
     }
 
     /** Tela inicial com a listagem de pacientes */
-    public function foto(Request $request, int $id) {
-        $this->dados['foto'] = Foto::where('paciente_id', $id)->get();
-        return view('pacientes.visualizar', $this->dados);
+    public function baixar(Request $request, int $fotoID) {
+        $foto = Foto::findOrFail($fotoID);
+        
+        $zip = new \ZipArchive();
+        
+        $arquivoZip = storage_path("app/public/fotos/fotos_$fotoID.zip"); 
+        
+        //Cria um novo
+        if ($zip->open($arquivoZip, \ZipArchive::CREATE)===TRUE) {
+        
+            if ($foto->esquerdo_p1) {
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->esquerdo_p1)), $this->nomeArquivo($foto->esquerdo_p1));
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->esquerdo_p1_grid)), $this->nomeArquivo($foto->esquerdo_p1_grid));
+            }
+            if ($foto->esquerdo_p2) {
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->esquerdo_p2)), $this->nomeArquivo($foto->esquerdo_p2));
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->esquerdo_p2_grid)), $this->nomeArquivo($foto->esquerdo_p2_grid));
+            }
+            if ($foto->esquerdo_p3) {
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->esquerdo_p3)), $this->nomeArquivo($foto->esquerdo_p3));
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->esquerdo_p3_grid)), $this->nomeArquivo($foto->esquerdo_p3_grid));
+            }
+            
+            if ($foto->direito_p1) {
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->direito_p1)), $this->nomeArquivo($foto->direito_p1));
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->direito_p1_grid)), $this->nomeArquivo($foto->direito_p1_grid));
+            }
+            if ($foto->direito_p2) {
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->direito_p2)), $this->nomeArquivo($foto->direito_p2));
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->direito_p2_grid)), $this->nomeArquivo($foto->direito_p2_grid));
+            }
+            if ($foto->direito_p3) {
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->direito_p3)), $this->nomeArquivo($foto->direito_p3));
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->direito_p3_grid)), $this->nomeArquivo($foto->direito_p3_grid));
+            }
+
+            $zip->close();
+        } else {
+            echo 'erro';die;
+        }
+
+        return redirect("storage/fotos/fotos_$fotoID.zip");
+
     }   
 
-    /** Tela inicial com a listagem de pacientes */
-    public function baixar(Request $request, int $id) {
-        $this->dados['fotos'] = Foto::where('paciente_id', $id)->get();
-        return view('pacientes.visualizar', $this->dados);
-    }   
+    private function nomeArquivo($url) {
+        $partes = explode('/', $url);
+        return end($partes);
+    }
 
 }

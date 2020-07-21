@@ -40,7 +40,7 @@
                         <!-- OPÇÕES -->   
                         <td>
                             <a href="{{route('pacientes.visualizar', ['id' => $paciente->id])}}">
-                                <span class="more"><i class="zmdi zmdi-edit"></i></span>
+                                <span class="more"><i class="zmdi zmdi-camera"></i></span>
                             </a>
                             <span class="more remover-modal" data-toggle="modal" data-target="#smallmodal" data-id="{{$paciente->id}}"><i class="zmdi zmdi-delete"></i></span>
                         </td>
