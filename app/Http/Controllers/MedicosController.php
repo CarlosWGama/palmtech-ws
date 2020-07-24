@@ -14,7 +14,7 @@ class MedicosController extends Controller {
 
     /** Lista o usuários */
     public function index() {
-        $this->dados['medicos'] = Usuario::paginate(10);
+        $this->dados['medicos'] = Usuario::where('medico', true)->paginate(10);
         return view('medicos.listar', $this->dados);
     }
 
