@@ -39,6 +39,19 @@ class FotosController extends ApiController {
             $foto->esquerdo_p3_grid = 'foto_'.$pacienteID.'_'.$foto->id.'_esquerdo_p3_grid.png';
             $this->salvarImagem($request->foto['esquerdo_p3'], $nomeArquivo);
         }
+        //Caso tenha imagem, esquerda p4
+        if (!empty($request->foto['esquerdo_p4'])) {
+            $foto->esquerdo_p4 = $nomeArquivo = 'foto_'.$pacienteID.'_'.$foto->id.'_esquerdo_p4.jpg';
+            $foto->esquerdo_p4_grid = 'foto_'.$pacienteID.'_'.$foto->id.'_esquerdo_p4_grid.png';
+            $this->salvarImagem($request->foto['esquerdo_p4'], $nomeArquivo);
+        }
+        //Caso tenha imagem, esquerda p5
+        if (!empty($request->foto['esquerdo_p5'])) {
+            $foto->esquerdo_p5 = $nomeArquivo = 'foto_'.$pacienteID.'_'.$foto->id.'_esquerdo_p5.jpg';
+            $foto->esquerdo_p5_grid = 'foto_'.$pacienteID.'_'.$foto->id.'_esquerdo_p5_grid.png';
+            $this->salvarImagem($request->foto['esquerdo_p5'], $nomeArquivo);
+        }
+
         //Caso tenha imagem, direito p1
         if (!empty($request->foto['direito_p1'])) {
             $foto->direito_p1 = $nomeArquivo = 'foto_'.$pacienteID.'_'.$foto->id.'_direito_p1.jpg';
@@ -51,11 +64,23 @@ class FotosController extends ApiController {
             $foto->direito_p2_grid = 'foto_'.$pacienteID.'_'.$foto->id.'_direito_p2_grid.png';
             $this->salvarImagem($request->foto['direito_p2'], $nomeArquivo);
         }
-        //Caso tenha imagem, direito p1
+        //Caso tenha imagem, direito p3
         if (!empty($request->foto['direito_p3'])) {
             $foto->direito_p3 = $nomeArquivo = 'foto_'.$pacienteID.'_'.$foto->id.'_direito_p3.jpg';
             $foto->direito_p3_grid = 'foto_'.$pacienteID.'_'.$foto->id.'_direito_p3_grid.png';
             $this->salvarImagem($request->foto['direito_p3'], $nomeArquivo);
+        }
+        //Caso tenha imagem, direito p4
+        if (!empty($request->foto['direito_p4'])) {
+            $foto->direito_p4 = $nomeArquivo = 'foto_'.$pacienteID.'_'.$foto->id.'_direito_p4.jpg';
+            $foto->direito_p4_grid = 'foto_'.$pacienteID.'_'.$foto->id.'_direito_p4_grid.png';
+            $this->salvarImagem($request->foto['direito_p4'], $nomeArquivo);
+        }
+        //Caso tenha imagem, direito p1
+        if (!empty($request->foto['direito_p5'])) {
+            $foto->direito_p5 = $nomeArquivo = 'foto_'.$pacienteID.'_'.$foto->id.'_direito_p5.jpg';
+            $foto->direito_p5_grid = 'foto_'.$pacienteID.'_'.$foto->id.'_direito_p5_grid.png';
+            $this->salvarImagem($request->foto['direito_p5'], $nomeArquivo);
         }
         
         $foto->save();
@@ -107,12 +132,13 @@ class FotosController extends ApiController {
         $grid = storage_path('app/grid.png');
         $imageGrid = storage_path('app/public/fotos/'.$imagem[0].'_grid.png');
 
-        $tamanhoFoto = 524;
+        $larguraFoto = 920;
+        $alturaFoto = 1280;
         $original = imagecreatefromjpeg($original);
         $grid = imagecreatefrompng($grid);
         imagealphablending($original, true);
         imagesavealpha($original, true);
-        imagecopy($original, $grid, 0, 0, 0, 0, $tamanhoFoto, $tamanhoFoto);
+        imagecopy($original, $grid, 0, 0, 0, 0, $larguraFoto, $alturaFoto);
         imagepng($original, $imageGrid);
     }
 }

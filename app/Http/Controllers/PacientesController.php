@@ -58,6 +58,14 @@ class PacientesController extends Controller {
                 $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->esquerdo_p3)), $this->nomeArquivo($foto->esquerdo_p3));
                 $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->esquerdo_p3_grid)), $this->nomeArquivo($foto->esquerdo_p3_grid));
             }
+            if ($foto->esquerdo_p4) {
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->esquerdo_p4)), $this->nomeArquivo($foto->esquerdo_p4));
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->esquerdo_p4_grid)), $this->nomeArquivo($foto->esquerdo_p4_grid));
+            }
+            if ($foto->esquerdo_p5) {
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->esquerdo_p5)), $this->nomeArquivo($foto->esquerdo_p5));
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->esquerdo_p5_grid)), $this->nomeArquivo($foto->esquerdo_p5_grid));
+            }
             
             if ($foto->direito_p1) {
                 $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->direito_p1)), $this->nomeArquivo($foto->direito_p1));
@@ -70,6 +78,14 @@ class PacientesController extends Controller {
             if ($foto->direito_p3) {
                 $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->direito_p3)), $this->nomeArquivo($foto->direito_p3));
                 $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->direito_p3_grid)), $this->nomeArquivo($foto->direito_p3_grid));
+            }
+            if ($foto->direito_p4) {
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->direito_p4)), $this->nomeArquivo($foto->direito_p4));
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->direito_p4_grid)), $this->nomeArquivo($foto->direito_p4_grid));
+            }
+            if ($foto->direito_p5) {
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->direito_p5)), $this->nomeArquivo($foto->direito_p5));
+                $zip->addFile(storage_path("app/public/fotos/".$this->nomeArquivo($foto->direito_p5_grid)), $this->nomeArquivo($foto->direito_p5_grid));
             }
 
             $zip->close();

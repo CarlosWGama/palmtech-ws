@@ -22,16 +22,24 @@ class CriarTabelaFotos extends Migration
             $table->string('esquerdo_p1')->nullable();
             $table->string('esquerdo_p2')->nullable();
             $table->string('esquerdo_p3')->nullable();
+            $table->string('esquerdo_p4')->nullable();
+            $table->string('esquerdo_p5')->nullable();
             $table->string('direito_p1')->nullable();
             $table->string('direito_p2')->nullable();
             $table->string('direito_p3')->nullable();
+            $table->string('direito_p4')->nullable();
+            $table->string('direito_p5')->nullable();
             //GRID
             $table->string('esquerdo_p1_grid')->nullable();
             $table->string('esquerdo_p2_grid')->nullable();
             $table->string('esquerdo_p3_grid')->nullable();
+            $table->string('esquerdo_p4_grid')->nullable();
+            $table->string('esquerdo_p5_grid')->nullable();
             $table->string('direito_p1_grid')->nullable();
             $table->string('direito_p2_grid')->nullable();
             $table->string('direito_p3_grid')->nullable();
+            $table->string('direito_p4_grid')->nullable();
+            $table->string('direito_p5_grid')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

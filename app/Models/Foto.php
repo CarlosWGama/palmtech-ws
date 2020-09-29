@@ -56,6 +56,23 @@ class Foto extends Model {
     /**
      * Altera para a imagem ser exibida com a URL inteira.
      */
+    public function getEsquerdoP4Attribute($value) {
+        if (!empty($value))
+            return url('storage/fotos/'.$value);
+        return $value;
+    }
+    /**
+     * Altera para a imagem ser exibida com a URL inteira.
+     */
+    public function getEsquerdoP5Attribute($value) {
+        if (!empty($value))
+            return url('storage/fotos/'.$value);
+        return $value;
+    }
+
+    /**
+     * Altera para a imagem ser exibida com a URL inteira.
+     */
     public function getDireitoP1Attribute($value) {
         if (!empty($value))
             return url('storage/fotos/'.$value);
@@ -75,6 +92,24 @@ class Foto extends Model {
      * Altera para a imagem ser exibida com a URL inteira.
      */
     public function getDireitoP3Attribute($value) {
+        if (!empty($value))
+            return url('storage/fotos/'.$value);
+        return $value;
+    }
+    
+    /**
+     * Altera para a imagem ser exibida com a URL inteira.
+     */
+    public function getDireitoP4Attribute($value) {
+        if (!empty($value))
+            return url('storage/fotos/'.$value);
+        return $value;
+    }
+    
+    /**
+     * Altera para a imagem ser exibida com a URL inteira.
+     */
+    public function getDireitoP5Attribute($value) {
         if (!empty($value))
             return url('storage/fotos/'.$value);
         return $value;
@@ -110,6 +145,24 @@ class Foto extends Model {
     /**
      * Altera para a imagem ser exibida com a URL inteira.
      */
+    public function getEsquerdoP4GridAttribute($value) {
+        if (!empty($value))
+            return url('storage/fotos/'.$value);
+        return $value;
+    }
+   
+    /**
+     * Altera para a imagem ser exibida com a URL inteira.
+     */
+    public function getEsquerdoP5GridAttribute($value) {
+        if (!empty($value))
+            return url('storage/fotos/'.$value);
+        return $value;
+    }
+
+    /**
+     * Altera para a imagem ser exibida com a URL inteira.
+     */
     public function getDireitoP1GridAttribute($value) {
         if (!empty($value))
             return url('storage/fotos/'.$value);
@@ -129,6 +182,24 @@ class Foto extends Model {
      * Altera para a imagem ser exibida com a URL inteira.
      */
     public function getDireitoP3GridAttribute($value) {
+        if (!empty($value))
+            return url('storage/fotos/'.$value);
+        return $value;
+    }
+
+    /**
+     * Altera para a imagem ser exibida com a URL inteira.
+     */
+    public function getDireitoP4GridAttribute($value) {
+        if (!empty($value))
+            return url('storage/fotos/'.$value);
+        return $value;
+    }
+    
+    /**
+     * Altera para a imagem ser exibida com a URL inteira.
+     */
+    public function getDireitoP5GridAttribute($value) {
         if (!empty($value))
             return url('storage/fotos/'.$value);
         return $value;

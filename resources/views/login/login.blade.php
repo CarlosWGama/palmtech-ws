@@ -4,7 +4,7 @@
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="#">
-                                PALMTECH
+                                FOOTSCAN
                             </a>
                         </div>
                         <div class="login-form">
