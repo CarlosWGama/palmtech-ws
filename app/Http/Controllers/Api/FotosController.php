@@ -132,8 +132,8 @@ class FotosController extends ApiController {
         $grid = storage_path('app/grid.png');
         $imageGrid = storage_path('app/public/fotos/'.$imagem[0].'_grid.png');
 
-        $larguraFoto = 750;
-        $alturaFoto = 1000;
+        $larguraFoto = 960;
+        $alturaFoto = 1280;
         $original = imagecreatefromjpeg($original);
         $grid = imagecreatefrompng($grid);
         imagealphablending($original, true);
