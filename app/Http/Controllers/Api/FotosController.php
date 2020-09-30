@@ -138,7 +138,7 @@ class FotosController extends ApiController {
         $grid = imagecreatefrompng($grid);
         imagealphablending($original, true);
         imagesavealpha($original, true);
-        imagecopy($original, $grid, 0, 0, 0, 0, $alturaFoto, $larguraFoto);
+        imagecopy($original, $grid, 0, 0, 0, 0, $larguraFoto, $alturaFoto);
         imagepng($original, $imageGrid);
     }
 }
